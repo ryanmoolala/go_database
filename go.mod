@@ -1,1 +1,3 @@
-module go_database 
+module main
+
+go 1.24.2

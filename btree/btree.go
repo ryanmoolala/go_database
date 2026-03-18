@@ -1,6 +1,6 @@
 package main
 
-//This is a Go implementation of a B+ Tree
+//basic structs
 type Entry struct {
 	key string
 	value interface{}
@@ -12,6 +12,7 @@ type TreeNode struct {
 	entries []*Entry //for leaf nodes only 
 	childNodes []*TreeNode //for internal nodes
 	next *TreeNode //leaf level linked list
+	prev *TreeNode //leaf level linked list
 }
 
 type BTree struct {
@@ -56,7 +57,7 @@ func createTree(beta int) *BTree {
 }
 
 //Functions that interact with the tree itself
-// Implement Search
+// Implement Search OK
 // Implement Insert without splitting
 // Add splitChild
 // Handle root splitting
@@ -87,3 +88,4 @@ func (tree *BTree) searchElement(key string) (*Entry, bool) {
 
     return nil, false
 }
+

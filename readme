@@ -1,0 +1,106 @@
+# 📦 Go B+ Tree (Read-Optimized Cache Foundation)
+
+## 🚀 Overview
+
+This project aims to build a **fully functional B+ Tree implementation in Go**, designed as the foundation for a **read-heavy cache system**.
+
+The long-term goal is to evolve this into a **high-performance storage layer** optimized for:
+
+* Fast lookups (read-heavy workloads)
+* Efficient range queries
+* Scalable indexing for large datasets
+
+---
+
+## 🎯 Objectives
+
+### Phase 1: Core Data Structure
+
+* Implement a working **B+ Tree**
+* Support:
+  * Insert
+  * Search
+  * Delete
+
+* Maintain:
+  * Balanced tree structure
+  * Sorted keys
+  * Linked leaf nodes for range scans
+
+---
+
+### Phase 2: Performance Optimization
+
+* Optimize for **read-heavy workloads**
+* Improve:
+
+  * Cache locality
+  * Node traversal efficiency
+* Minimize:
+  * Disk / memory access overhead
+
+---
+
+### Phase 3: Cache System Integration
+
+* Build a **read-optimized cache layer** on top of the B+ Tree
+* Features:
+
+  * Key-value storage
+  * Fast point lookups
+  * Efficient range queries
+* Explore:
+
+  * In-memory + disk hybrid design
+  * Eviction strategies (e.g., LRU, LFU)
+
+---
+
+## 🧠 Why B+ Tree?
+
+B+ Trees are widely used in databases and storage systems because they:
+
+* Keep all data in **leaf nodes** → faster sequential access
+* Maintain **balanced height** → consistent lookup time `O(log n)`
+* Support **range queries efficiently** via linked leaves
+* Are **cache-friendly** due to node-based structure
+
+---
+
+## 🧪 Planned Features
+
+* [ ] B+ Tree node splitting & merging
+* [ ] Bulk loading
+* [ ] Range scan API
+* [ ] Persistence layer (disk-backed nodes)
+* [ ] Concurrency support (RW locks / latch coupling)
+* [ ] Benchmarking (read vs write performance)
+* [ ] Cache eviction policies
+
+---
+
+## 📊 Use Cases
+
+* Read-heavy caching systems
+* Database indexing
+* Key-value storage engines
+* Search systems with range queries
+
+---
+
+## 🔍 Inspiration
+
+This project is inspired by storage systems used in:
+
+* Modern databases (e.g., MySQL InnoDB, PostgreSQL)
+* Distributed storage engines
+* LSM vs B-Tree design tradeoffs 
+
+---
+
+## 📌 Status
+
+🚧 Work in progress — building core tree structure first.
+
+---
+
