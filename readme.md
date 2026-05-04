@@ -1,5 +1,4 @@
 # bptree
-
 A read-optimized B+ Tree implementation in Go, designed as the foundation for a high-performance cache and storage layer.
 
 ## Overview
@@ -8,34 +7,21 @@ A read-optimized B+ Tree implementation in Go, designed as the foundation for a 
 
 B+ Trees are the index structure of choice in systems like MySQL InnoDB and PostgreSQL because they keep all data in leaf nodes (enabling efficient sequential scans), maintain a balanced height for consistent `O(log n)` lookups, and expose a natural API for range queries via linked leaves.
 
----
-
 ## Features
-
 - [x] Insert, search
-- [ ] Delete
-- [ ] Balanced tree with automatic node splitting
-- [ ] Linked leaf nodes for range scans
-- [ ] Bulk loading
-- [ ] Range scan API
+- [x] Delete
+- [x] Balanced tree with automatic node splitting, underflow & overflow
+- [ ] Duplicate keys
+- [x] Linked leaf nodes for range scans
+- [x] Bulk loading
+- [x] Range scan API
 - [ ] Persistence layer (disk-backed nodes)
 - [ ] Concurrency support (RW locks, latch coupling)
 - [ ] Cache eviction policies (LRU, LFU)
 - [ ] Benchmarks (read vs write throughput)
 
----
 
-## Getting Started
-
-```bash
-git clone https://github.com/your-username/bptree.git
-cd bptree
-go build ./...
-go test ./...
-```
-
-### Basic usage
-
+## Basic usage
 ```go
 tree := bptree.New(order)
 
@@ -51,34 +37,18 @@ results := tree.RangeScan(10, 50)
 tree.Delete(17)
 ```
 
----
 
-## Design
-
-### Why B+ Tree over alternatives?
-
-| Structure | Point lookup | Range scan | Write-heavy | Notes |
-|---|---|---|---|---|
-| B+ Tree | `O(log n)` | Excellent | Good | All data in leaves; cache-friendly |
-| Hash map | `O(1)` | None | Excellent | No ordering |
-| LSM Tree | `O(log n)` | Good | Excellent | Write-optimized; read amplification |
-| Skip list | `O(log n)` | Good | Good | Simpler but higher memory overhead |
-
-For read-heavy workloads with range query requirements, B+ Tree is the natural fit.
-
-### Planned architecture
-
+## Planned architecture
 ```
 ┌─────────────────────────────┐
-│        Cache Layer          │  ← eviction policies, TTL
+│        Cache Layer          │  
 ├─────────────────────────────┤
-│        B+ Tree Index        │  ← sorted keys, range scans
+│        B+ Tree Index        │  
 ├─────────────────────────────┤
-│      Storage Backend        │  ← in-memory or disk-backed
+│      Storage Backend        │ 
 └─────────────────────────────┘
 ```
 
----
 
 ## Roadmap
 
@@ -86,14 +56,3 @@ For read-heavy workloads with range query requirements, B+ Tree is the natural f
 - B+ Tree with insert, search, delete
 - Node splitting and merging
 - Linked leaves for range traversal
-
-**Phase 2 — Performance**
-- Cache-locality optimizations
-- Node traversal profiling
-- Benchmarks against `map` and competing tree structures
-
-**Phase 3 — Cache system**
-- Key-value cache API on top of the tree
-- In-memory + disk hybrid storage
-- LRU and LFU eviction strategies
-- Concurrency via RW locks and latch coupling
