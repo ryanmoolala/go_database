@@ -339,9 +339,7 @@ func (tree *BTree) delete(key string) bool {
     return current.delete_leaf_entry(key)
 }
 
-/* ------------------------------------------------------------------ */
 /* Public API                                                           */
-/* ------------------------------------------------------------------ */
  
 func CreateNewTree(order int) *BTree                                          { return create_new_tree(order) }
 func CreateNewTreeBulkload(entries []*Entry, order int) *BTree                { return create_new_tree_bulkload(entries, order) }

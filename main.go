@@ -1,32 +1,29 @@
 package main
 
 import (
-    "fmt"
-    "godatabase/bptree"
+    //"godatabase/bptree"
+	"godatabase/cli"
 )
-func main() {
-	tree := bptree.CreateNewTree(2)
- 
-	tree.Insert(bptree.CreateEntry("alice", "engineer"))
-	tree.Insert(bptree.CreateEntry("bob", "designer"))
-	tree.Insert(bptree.CreateEntry("carol", "manager"))
- 
-	// Search
-	entry, found := tree.Search("bob")
-	if found {
-		fmt.Println("Found it ", entry.GetKey(), entry.GetValue()) // bob designer
-	}
 
-	// Conditional search
-	hits := tree.SearchRange(map[string]string{"carol": "<", "alice": "<="})
-	for _, e := range hits {
-		fmt.Println("conditional search ", e.GetKey(), e.GetValue())
-	}
+
+/*Functions 
+
+func CreateNewTree(order int) *BTree                                         
+func CreateNewTreeBulkload(entries []*Entry, order int) *BTree                
+func PrintTree(root *TreeNode)                                              
  
-	// Delete
-	tree.Delete("bob")
- 
-	// Print tree structure
-	bptree.PrintTree(tree.Root())
+func (tree *BTree) Insert(entry *Entry) bool                                  
+func (tree *BTree) Search(key string) (*Entry, bool)                          
+func (tree *BTree) Delete(key string) bool                                    
+func (tree *BTree) SearchRange(conditions map[string]string) []*Entry         
+func (tree *BTree) Root() *TreeNode    
+
+*/
+
+func main() {
+	cli.Start()
 }
+
+
+
  

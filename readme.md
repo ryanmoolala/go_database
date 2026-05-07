@@ -10,11 +10,13 @@ B+ Trees are the index structure of choice in systems like MySQL InnoDB and Post
 ## Features
 - [x] Insert, search
 - [x] Delete
+- [ ] Search with conditions
 - [x] Balanced tree with automatic node splitting, underflow & overflow
 - [ ] Duplicate keys
 - [x] Linked leaf nodes for range scans
 - [x] Bulk loading
 - [x] Range scan API
+- [ ] Interactive CLI with commands
 - [ ] Persistence layer (disk-backed nodes)
 - [ ] Concurrency support (RW locks, latch coupling)
 - [ ] Cache eviction policies (LRU, LFU)
