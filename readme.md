@@ -10,13 +10,13 @@ B+ Trees are the index structure of choice in systems like MySQL InnoDB and Post
 ## Features
 - [x] Insert, search
 - [x] Delete
-- [ ] Search with conditions
+- [x] Search with conditions
 - [x] Balanced tree with automatic node splitting, underflow & overflow
 - [ ] Duplicate keys
 - [x] Linked leaf nodes for range scans
 - [x] Bulk loading
 - [x] Range scan API
-- [ ] Interactive CLI with commands
+- [x] Interactive CLI with commands
 - [ ] Persistence layer (disk-backed nodes)
 - [ ] Concurrency support (RW locks, latch coupling)
 - [ ] Cache eviction policies (LRU, LFU)
@@ -25,18 +25,16 @@ B+ Trees are the index structure of choice in systems like MySQL InnoDB and Post
 
 ## Basic usage
 ```go
-tree := bptree.New(order)
+CREATE DUMMYTABLE 3
 
-tree.Insert(42, "hello")
-tree.Insert(17, "world")
+INSERT DUMMYTABLE VALUES ("TEST", "VALUE")
+INSERT DUMMYTABLE VALUES ("TEST2", "VALUE2")
 
-val, ok := tree.Search(42)
-// val = "hello", ok = true
+DELETE FROM DUMMYTABLE "TEST"
 
-results := tree.RangeScan(10, 50)
-// returns all key-value pairs with keys in [10, 50]
+PRINT DUMMYTABLE
 
-tree.Delete(17)
+SELECT * FROM DUMMYTABLE WHERE KEY >= "TEST"
 ```
 
 
@@ -51,10 +49,3 @@ tree.Delete(17)
 └─────────────────────────────┘
 ```
 
-
-## Roadmap
-
-**Phase 1 — Core data structure** *(current)*
-- B+ Tree with insert, search, delete
-- Node splitting and merging
-- Linked leaves for range traversal
