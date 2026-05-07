@@ -5,6 +5,8 @@ import (
 	
 )
 
+//var skippedWhitespace bool = false
+
 type Lexer struct {
 	input        string
 	position     int  // current char position
@@ -105,15 +107,14 @@ func (l *Lexer) NextToken() Token {
 			tok.Type = LookupIdent(tok.Literal)
 			return tok // early return — readChar already advanced
 		} else if isDigit(l.ch) {
-			tok.Type = NUMBER
 			tok.Literal = l.readNumber()
+			tok.Type = NUMBER
 			return tok
 		} else {
 			tok = newToken(ILLEGAL, l.ch)
 			//identified illegal, must return an error TO-DO
 		}
 	}
-
 	l.readChar()// shift reading position to the next
 	return tok
 }
@@ -127,7 +128,7 @@ func (l *Lexer) skipWhitespace() {
 // readIdentifier reads a full word (letter sequence)
 func (l *Lexer) readIdentifier() string {
 	start := l.position
-	for isLetter(l.ch) {
+	for isLetter(l.ch) || isDigit(l.ch) {
 		l.readChar()
 	}
 	return l.input[start:l.position]

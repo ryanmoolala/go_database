@@ -82,6 +82,7 @@ func Start() {
 		commandHistory = append(commandHistory, line) //save history
  
 		tokens, ok, lexer := tokenize(line)
+		fmt.Print(tokens)
 		if !ok {
 			continue // illegal token found — skip to next input
 		}
